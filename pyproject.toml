@@ -1,0 +1,19 @@
+[project]
+name = "orbiLib"
+version = "0.1.2"
+authors = [
+  { name="Orbernator", email="github@teamorbi.net" },
+]
+description = "The package that most of the Team Orbi programs rely on"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
