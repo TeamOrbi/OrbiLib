@@ -1,6 +1,6 @@
 [project]
 name = "orbiLib"
-version = "0.1.2"
+version = "0.1.3"
 authors = [
   { name="Orbernator", email="github@teamorbi.net" },
 ]

@@ -4,9 +4,9 @@ import time
 import sys
 import random
 
-tombUrl = "https://site.teamorbi.net/tomb/current-version.txt"
-cortexUrl = "https://site.teamorbi.net/cortex/current-version.txt"
-orbilibUrl = "https://site.teamorbi.net/orbilib/current-version.txt"
+tombUrl = "https://www.teamorbi.net/tomb/current-version.txt"
+cortexUrl = "https://www.teamorbi.net/cortex/current-version.txt"
+orbilibUrl = "https://www.teamorbi.net/orbilib/current-version.txt"
 
 PROJECT_URLS = {
     "Tomb": tombUrl,
@@ -14,7 +14,7 @@ PROJECT_URLS = {
     "OrbiLib": orbilibUrl,
 }
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 # Backward compatibility for existing callers.
 orbiLib = __version__
 
