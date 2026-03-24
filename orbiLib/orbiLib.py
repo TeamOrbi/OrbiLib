@@ -14,44 +14,47 @@ PROJECT_URLS = {
     "OrbiLib": orbilibUrl,
 }
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 # Backward compatibility for existing callers.
 orbiLib = __version__
 
 def updateCheck(Version, project, *, version_url=None, timeout=5):
-    url = version_url or PROJECT_URLS.get(project)
-    if not url:
-        print(f"Unknown project '{project}'. No update URL configured.")
-        return None
+    updatePermissions = input = ("Would you like to connect to the Team Orbi servers?\nYour IP may be logged by Cloudflare or Github during this process.\nPress n to cancel update.")
+    if updatePermissions != "n":
+        url = version_url or PROJECT_URLS.get(project)
+        if not url:
+            print(f"Unknown project '{project}'. No update URL configured.")
+            return None
 
-    try:
-        req = Request(
-            url,
-            headers={"User-Agent": "TeamOrbi-InternetMaster/1.0"}
-        )
-        with urlopen(req, timeout=timeout) as response:
-            file_content = response.read().decode("utf-8").strip()
-
-        if file_content == Version:
-            print("Project " + project + " is up to date!")
-            return True
-        else:
-            print(
-                f"Out of date. Your version: {Version}. "
-                f"Latest version: {file_content}."
+        try:
+            req = Request(
+                url,
+                headers={"User-Agent": "TeamOrbi-InternetMaster/1.0"}
             )
-            return False
+            with urlopen(req, timeout=timeout) as response:
+                file_content = response.read().decode("utf-8").strip()
 
-    except urllib.error.HTTPError as e:
-        print(
-            f"Update check unavailable for {project}: HTTP {e.code}. "
-            "Please try again later."
-        )
-        return None
+            if file_content == Version:
+                print("Project " + project + " is up to date!")
+                return True
+            else:
+                print(
+                    f"Out of date. Your version: {Version}. "
+                    f"Latest version: {file_content}."
+                )
+                return False
 
-    except urllib.error.URLError as e:
-        print(f"Update check unavailable for {project}: {e}")
-        return None
+        except urllib.error.HTTPError as e:
+            print(
+                f"Update check unavailable for {project}: HTTP {e.code}. "
+                "Please try again later."
+            )
+            return None
+
+        except urllib.error.URLError as e:
+            print(f"Update check unavailable for {project}: {e}")
+            return None
+    
 
 def type_message(message, delay=0.05):
     """
